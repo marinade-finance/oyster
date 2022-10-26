@@ -59,6 +59,7 @@ import {
   VoteThresholdType,
   GoverningTokenConfigArgs,
   GoverningTokenConfig,
+  MultiChoiceTypeKind,
 } from './accounts';
 import { serialize } from 'borsh';
 import { BorshAccountParser } from '../core/serialisation';
@@ -100,9 +101,11 @@ import { deserializeBorsh } from '../tools/borsh';
     return VoteType.SINGLE_CHOICE;
   }
 
+  const multiChoiceType = reader.buf.readUInt8(reader.offset);
+  reader.offset += 1;
   const choiceCount = reader.buf.readUInt8(reader.offset);
   reader.offset += 2; // skip two bytes
-  return VoteType.MULTI_CHOICE(choiceCount);
+  return VoteType.MULTI_CHOICE(choiceCount, multiChoiceType);
 };
 
 (BinaryWriter.prototype as any).writeVoteType = function (value: VoteType) {
@@ -112,6 +115,11 @@ import { deserializeBorsh } from '../tools/borsh';
   writer.length += 1;
 
   if (value.type === VoteTypeKind.MultiChoice) {
+    writer.buf.writeUInt8(
+      value.multiChoiceType || MultiChoiceTypeKind.Approval,
+      writer.length,
+    );
+    writer.length += 1;
     // maxVoterOptions and maxWinningOtions are not implemented at backend
     writer.buf.writeUInt8(value.maxVoterOptions || 0, writer.length);
     writer.length += 1;

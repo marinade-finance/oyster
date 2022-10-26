@@ -199,26 +199,42 @@ export enum VoteTypeKind {
   MultiChoice = 1,
 }
 
+export enum MultiChoiceTypeKind {
+  Approval = 0,
+  Weighted = 1,
+}
+
 export class VoteType {
   type: VoteTypeKind;
   maxVoterOptions: number | undefined;
   maxWinningOptions: number | undefined;
+  multiChoiceType: MultiChoiceTypeKind | undefined;
 
-  constructor(args: { type: VoteTypeKind; choiceCount: number | undefined }) {
+  constructor(args: {
+    type: VoteTypeKind;
+    choiceCount: number | undefined;
+    multiChoiceType: MultiChoiceTypeKind | undefined;
+  }) {
     this.type = args.type;
     this.maxVoterOptions = args.choiceCount;
     this.maxWinningOptions = args.choiceCount;
+    this.multiChoiceType = args.multiChoiceType;
   }
 
   static SINGLE_CHOICE = new VoteType({
     type: VoteTypeKind.SingleChoice,
     choiceCount: undefined,
+    multiChoiceType: undefined,
   });
 
-  static MULTI_CHOICE = (choiceCount: number) =>
+  static MULTI_CHOICE = (
+    choiceCount: number,
+    multiChoiceType?: MultiChoiceTypeKind | undefined,
+  ) =>
     new VoteType({
       type: VoteTypeKind.MultiChoice,
       choiceCount: choiceCount,
+      multiChoiceType: multiChoiceType || MultiChoiceTypeKind.Approval,
     });
 
   isSingleChoice() {
