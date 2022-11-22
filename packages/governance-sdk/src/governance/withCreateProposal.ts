@@ -33,7 +33,11 @@ export const withCreateProposal = async (
   useDenyOption: boolean,
   payer: PublicKey,
   voterWeightRecord?: PublicKey,
+  prefetchSpace?: number,
 ) => {
+  if (prefetchSpace != undefined && prefetchSpace < 0) {
+    throw Error('parameter prefetchSpace can be only a positive number');
+  }
   const args = new CreateProposalArgs({
     name,
     descriptionLink,
@@ -41,6 +45,7 @@ export const withCreateProposal = async (
     voteType,
     options,
     useDenyOption,
+    prefetchSpace,
   });
   const data = Buffer.from(
     serialize(getGovernanceInstructionSchema(programVersion), args),

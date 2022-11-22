@@ -521,6 +521,7 @@ function createGovernanceInstructionSchema(programVersion: number) {
                 ['voteType', 'voteType'],
                 ['options', ['string']],
                 ['useDenyOption', 'u8'],
+                ['prefetchSpace', 'u64'],
               ]),
         ],
       },

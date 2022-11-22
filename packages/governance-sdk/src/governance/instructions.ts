@@ -141,6 +141,7 @@ export class CreateProposalArgs {
   voteType: VoteType;
   options: string[];
   useDenyOption: boolean;
+  prefetchSpace: number;
   // --------------------------------
 
   constructor(args: {
@@ -150,6 +151,7 @@ export class CreateProposalArgs {
     voteType: VoteType;
     options: string[];
     useDenyOption: boolean;
+    prefetchSpace?: number;
   }) {
     this.name = args.name;
     this.descriptionLink = args.descriptionLink;
@@ -157,6 +159,7 @@ export class CreateProposalArgs {
     this.voteType = args.voteType;
     this.options = args.options;
     this.useDenyOption = args.useDenyOption;
+    this.prefetchSpace = args.prefetchSpace ? args.prefetchSpace : 0;
   }
 }
 
