@@ -358,7 +358,7 @@ function createGovernanceStructSchema(
             ? [
                 ['councilVoteTipping', 'u8'],
                 ['communityVetoVoteThreshold', 'VoteThreshold'],
-                ['reserved', [3]],
+                ['reserved', [5]],
               ]
             : []),
         ],
@@ -746,7 +746,6 @@ function createGovernanceAccountSchema(accountVersion: number) {
           ['proposalCount', 'u32'],
           ['config', GovernanceConfig],
           ...(accountVersion >= ACCOUNT_VERSION_V2 ? [] : [['reserved', [6]]]),
-          ['votingProposalCount', 'u16'],
         ],
       },
     ],
