@@ -132,6 +132,7 @@ export enum VoteThresholdType {
   QuorumPercentage = 1,
   // Supported for VERSION >= 3
   Disabled = 2,
+  QuorumPercentageAllSucceed = 3,
 }
 
 export class VoteThreshold {
