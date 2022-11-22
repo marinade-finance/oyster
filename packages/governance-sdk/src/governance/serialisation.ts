@@ -203,7 +203,8 @@ import { deserializeBorsh } from '../tools/borsh';
   // Read VoteThresholds with u8 value
   if (
     type === VoteThresholdType.YesVotePercentage ||
-    type === VoteThresholdType.QuorumPercentage
+    type === VoteThresholdType.QuorumPercentage ||
+    type === VoteThresholdType.QuorumPercentageAllSucceed
   ) {
     const percentage = reader.buf.readUInt8(reader.offset);
     reader.offset += 1;
@@ -229,7 +230,8 @@ import { deserializeBorsh } from '../tools/borsh';
   // Write value for VoteThresholds with u8 value
   if (
     value.type === VoteThresholdType.YesVotePercentage ||
-    value.type === VoteThresholdType.QuorumPercentage
+    value.type === VoteThresholdType.QuorumPercentage ||
+    value.type === VoteThresholdType.QuorumPercentageAllSucceed
   ) {
     writer.buf.writeUInt8(value.value!, writer.length);
     writer.length += 1;
