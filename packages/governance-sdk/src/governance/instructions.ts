@@ -39,6 +39,8 @@ export enum GovernanceInstruction {
   UpdateProgramMetadata = 24,
   CreateNativeTreasury = 25,
   RevokeGoverningTokens = 26,
+  InsertProposalOptions = 27,
+  CompleteProposal = 28,
 }
 
 export class CreateRealmArgs {
@@ -321,6 +323,20 @@ export class ExecuteTransactionArgs {
 export class FlagTransactionErrorArgs {
   instruction: GovernanceInstruction =
     GovernanceInstruction.FlagTransactionError;
+}
+
+export class InsertProposalOptionsArgs {
+  instruction: GovernanceInstruction =
+    GovernanceInstruction.InsertProposalOptions;
+  options: string[];
+
+  constructor(args: { options: string[] }) {
+    this.options = args.options;
+  }
+}
+
+export class CompleteProposalArgs {
+  instruction: GovernanceInstruction = GovernanceInstruction.CompleteProposal;
 }
 
 export enum SetRealmAuthorityAction {
