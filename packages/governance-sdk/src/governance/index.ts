@@ -36,3 +36,5 @@ export * from './withSetGovernanceDelegate';
 export * from './withSignOffProposal';
 export * from './withUpdateProgramMetadata';
 export * from './withWithdrawGoverningTokens';
+export * from './withInsertProposalOptions';
+export * from './withCompleteProposal';
