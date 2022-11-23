@@ -5,6 +5,7 @@ import {
   AddSignatoryArgs,
   CancelProposalArgs,
   CastVoteArgs,
+  CompleteProposalArgs,
   CreateGovernanceArgs,
   CreateMintGovernanceArgs,
   CreateNativeTreasuryArgs,
@@ -17,6 +18,7 @@ import {
   ExecuteTransactionArgs,
   FinalizeVoteArgs,
   FlagTransactionErrorArgs,
+  InsertProposalOptionsArgs,
   InsertTransactionArgs,
   RelinquishVoteArgs,
   RemoveTransactionArgs,
@@ -615,6 +617,25 @@ function createGovernanceInstructionSchema(programVersion: number) {
         fields: [['instruction', 'u8']],
       },
     ],
+
+    [
+      InsertProposalOptionsArgs,
+      {
+        kind: 'struct',
+        fields: [
+          ['instruction', 'u8'],
+          ['options', ['string']],
+        ],
+      },
+    ],
+    [
+      CompleteProposalArgs,
+      {
+        kind: 'struct',
+        fields: [['instruction', 'u8']],
+      },
+    ],
+
     [
       FlagTransactionErrorArgs,
       {
