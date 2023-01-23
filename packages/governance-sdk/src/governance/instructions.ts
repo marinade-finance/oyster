@@ -39,8 +39,9 @@ export enum GovernanceInstruction {
   UpdateProgramMetadata = 24,
   CreateNativeTreasury = 25,
   RevokeGoverningTokens = 26,
-  InsertProposalOptions = 27,
+  RefundProposalDeposit = 27,
   CompleteProposal = 28,
+  InsertProposalOptions = 29,
 }
 
 export class CreateRealmArgs {
