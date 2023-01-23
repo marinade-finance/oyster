@@ -7,7 +7,6 @@ export const withCompleteProposal = async (
   instructions: TransactionInstruction[],
   programId: PublicKey,
   programVersion: number,
-  governance: PublicKey,
   proposal: PublicKey,
 ) => {
   const args = new CompleteProposalArgs();
@@ -16,11 +15,6 @@ export const withCompleteProposal = async (
   );
 
   const keys = [
-    {
-      pubkey: governance,
-      isWritable: false,
-      isSigner: false,
-    },
     {
       pubkey: proposal,
       isWritable: true,

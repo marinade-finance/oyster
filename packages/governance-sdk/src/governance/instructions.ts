@@ -40,8 +40,8 @@ export enum GovernanceInstruction {
   CreateNativeTreasury = 25,
   RevokeGoverningTokens = 26,
   RefundProposalDeposit = 27,
-  InsertProposalOptions = 28,
-  CompleteProposal = 29,
+  CompleteProposal = 28,
+  InsertProposalOptions = 29,
 }
 
 export class CreateRealmArgs {

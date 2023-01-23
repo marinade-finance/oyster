@@ -2,17 +2,16 @@ import { PublicKey, TransactionInstruction } from '@solana/web3.js';
 import { getGovernanceInstructionSchema } from './serialisation';
 import { serialize } from 'borsh';
 import { InsertProposalOptionsArgs } from './instructions';
+import { SYSTEM_PROGRAM_ID } from '../tools';
 
 export const withInsertProposalOptions = async (
   instructions: TransactionInstruction[],
   programId: PublicKey,
   programVersion: number,
-  realm: PublicKey,
-  governance: PublicKey,
   proposal: PublicKey,
   proposalOwnerTokenOwnerRecord: PublicKey,
-  governingTokenMint: PublicKey,
   governanceAuthority: PublicKey,
+  payer: PublicKey,
   options: string[],
 ) => {
   if (!options || options.length == 0) {
@@ -27,16 +26,6 @@ export const withInsertProposalOptions = async (
 
   const keys = [
     {
-      pubkey: realm,
-      isWritable: false,
-      isSigner: false,
-    },
-    {
-      pubkey: governance,
-      isWritable: false,
-      isSigner: false,
-    },
-    {
       pubkey: proposal,
       isWritable: true,
       isSigner: false,
@@ -47,14 +36,19 @@ export const withInsertProposalOptions = async (
       isSigner: false,
     },
     {
-      pubkey: governingTokenMint,
-      isWritable: false,
-      isSigner: false,
-    },
-    {
       pubkey: governanceAuthority,
       isWritable: false,
       isSigner: true,
+    },
+    {
+      pubkey: payer,
+      isWritable: true,
+      isSigner: true,
+    },
+    {
+      pubkey: SYSTEM_PROGRAM_ID,
+      isWritable: false,
+      isSigner: false,
     },
   ];
 
