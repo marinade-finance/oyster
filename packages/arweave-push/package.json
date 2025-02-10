@@ -28,6 +28,6 @@
     "coingecko-api": "1.0.10",
     "escape-html": "^1.0.3",
     "mime-types": "2.1.30",
-    "node-fetch": "2.6.1"
+    "node-fetch": "2.6.7"
   }
 }
